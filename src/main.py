@@ -16,5 +16,4 @@ def timeTest(iterations=10):
     print("---------------------------------")
     print("Average Compute Time", computeTime)
 
-# timeToCompute(ticker='AMD', show=True)
-timeTest()
+testSimulateBuy()

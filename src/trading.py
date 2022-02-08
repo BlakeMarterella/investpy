@@ -26,10 +26,16 @@ def makeDataframe(ticker, range=100):
     # Add columns to run analysis
     df['change'] = df['close'] - df['open']
     # If you change the value of the rolling mean, it will affect the bollinger bands
-    df['rolling_mean'] = df['close'].rolling(int(range) // 20 + 1).mean()
-    df['rolling_std'] = df['close'].rolling(int(range) // 20 + 1).std()
+    df['rolling_mean'] = df['close'].rolling(int(range) // 10 + 1).mean()
+    df['rolling_std'] = df['close'].rolling(int(range) // 10 + 1).std()
     df['upper_band'] = df['rolling_mean'] + 2 * df['rolling_std']
     df['lower_band'] = df['rolling_mean'] - 2 * df['rolling_std']
+    
+    #Determine whether to buy the stock or not
+    df['buy'] = df['close'] <= df['lower_band']
+    df['buy'] = df['buy'].astype('bool')
+    df['sell'] = df['close'] >= df['upper_band']
+    df['sell'] = df['sell'].astype('bool')
     return df
 
 # Print the data frame and its cooresponding bollinger bands
@@ -48,7 +54,7 @@ def timeToCompute(ticker, range=100, show=False):
     #Start the clock to optimize speed and performance
     start_time = time.time()
 
-    df = makeDataframe(ticker='AMD')
+    df = makeDataframe(ticker)
 
     time_to_compute = time.time() - start_time
     # Display the bollinger band graph and data frame data
@@ -56,3 +62,14 @@ def timeToCompute(ticker, range=100, show=False):
         printDataframe(df)
     
     return time_to_compute
+
+# Using the data provided test what a stock purchase would have yielded
+# The test method buys $500 of the default AAPL stock and will calculate
+# the projected profit over a 200 day period
+def testSimulateBuy():
+    # where it says to buy 
+    portfolio = 100
+    df = makeDataframe('AMZN', range=100)
+    action_df = df.loc[ df['buy'] != df['sell'] ]
+    print(action_df)
+    printDataframe(df)
