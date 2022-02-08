@@ -32,6 +32,7 @@ def makeDataframe(ticker, range=100):
     df['lower_band'] = df['rolling_mean'] - 2 * df['rolling_std']
     return df
 
+# Print the data frame and its cooresponding bollinger bands
 def printDataframe(df):
     smdf = df.reset_index().drop(columns = 'index')
     graph = smdf.plot(x = 'time', y = ['close', 'rolling_mean', 'upper_band', 'lower_band'])
@@ -40,7 +41,9 @@ def printDataframe(df):
     graph.set_ylabel("Close Price ($)")
     plt.show()
 
-def calculateTable(ticker, range=100, show=False):
+# Return the amount of time it takes to calculate the data
+# Useful for optimization of the trading algorithm
+def timeToCompute(ticker, range=100, show=False):
     print(ticker)
     #Start the clock to optimize speed and performance
     start_time = time.time()

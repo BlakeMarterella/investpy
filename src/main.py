@@ -1,19 +1,20 @@
 from trading import *
 
 def timeTest(iterations=10):
-    total_time = 0
-    time_to_compute = 0
+    totalTime = 0
+    computeTime = 0
     stocks = ['FB', 'AMZN', 'AAPL', 'NFLX', 'GOOG']
     for i in range(iterations):
-        temp_time = 0
+        tempTime = 0
         for stock in stocks:
-            temp_time += calculateTable(ticker=stock)
-        time_to_compute += (temp_time / len(stocks))
-        total_time += temp_time
+            tempTime += timeToCompute(ticker=stock)
+        computeTime += (tempTime / len(stocks))
+        totalTime += tempTime
 
-    time_to_compute /= iterations
-    print("Time To Compute", (iterations * len(stocks)), "Stocks:", total_time)
+    computeTime /= iterations
+    print("Time To Compute", (iterations * len(stocks)), "Stocks:", totalTime)
     print("---------------------------------")
-    print("Average Compute Time", time_to_compute)
+    print("Average Compute Time", computeTime)
 
-calculateTable(ticker='AMD', show=True)
+# timeToCompute(ticker='AMD', show=True)
+timeTest()
