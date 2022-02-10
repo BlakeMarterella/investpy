@@ -1,9 +1,10 @@
 from trading import *
 
 # 
-# 
+# Test that the time is formatted correctly
 # 
 def testMakeDataFrame():
+    df = makeDataframe('AMZN')
     return 0
 
 # Using the data provided test what a stock purchase would have yielded
@@ -14,7 +15,7 @@ def testSimulateBuy():
     bank = 100
     holding = 0
     invested = False
-    df = makeDataframe('AMZN', range=100)
+    df = makeDataframe('AMZN')
     print(df)
     action_df = df.loc[ df['buy'] != df['sell'] ]
     action_df = action_df.reset_index().drop(columns=['index'])

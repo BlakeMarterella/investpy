@@ -1,4 +1,5 @@
 from trading import *
+from test.tradingTest import *
 
 def timeTest(iterations=10):
     totalTime = 0
