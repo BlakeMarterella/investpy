@@ -2,9 +2,13 @@ from trading import *
 
 # 
 # Test that the time is formatted correctly
+# May have to run a substring on the time
+# To remove the indices before the time
 # 
 def testMakeDataFrame():
     df = makeDataframe('AMZN')
+    df['time'] = df['time'].astype('string')
+    print(df['time'])
     return 0
 
 # Using the data provided test what a stock purchase would have yielded
