@@ -1,4 +1,4 @@
-from trading import *
+from dataframe import *
 
 # 
 # Test that the time is formatted correctly
@@ -7,9 +7,7 @@ from trading import *
 # 
 def testMakeDataFrame():
     df = makeDataframe('AMZN')
-    df['time'] = df['time'].astype('string')
-    print(df['time'])
-    return 0
+    print(df)
 
 # Using the data provided test what a stock purchase would have yielded
 # The test method buys $500 of the default AAPL stock and will calculate

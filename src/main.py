@@ -1,5 +1,5 @@
-from trading import *
-from test.trading import *
+from dataframe import *
+from test.dataframe import *
 from test.efficiency import *
 
 testMakeDataFrame()
