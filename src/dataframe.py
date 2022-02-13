@@ -42,7 +42,7 @@ def makeDataframe(ticker, range=100):
     return df
 
 # Print the data frame and its cooresponding bollinger bands
-def printDataframe(df):
+def printBollingerBands(df):
     smdf = df.reset_index().drop(columns = 'index')
     graph = smdf.plot(x = 'time', y = ['close', 'rolling_mean', 'upper_band', 'lower_band'])
     graph.fill_between(x = smdf['time'], y1 = smdf['lower_band'], y2 = smdf['upper_band'], alpha = 0.1, color = 'green')
@@ -62,6 +62,6 @@ def timeToCompute(ticker, range=100, show=False):
     time_to_compute = time.time() - start_time
     # Display the bollinger band graph and data frame data
     if (show):
-        printDataframe(df)
+        printBollingerBands(df)
     
     return time_to_compute
